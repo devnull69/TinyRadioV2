@@ -1,0 +1,17 @@
+{
+  "name": "tinyradiov2",
+  "version": "2.0.0",
+  "description": "TinyRadio V2 backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thomas Theiner",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "jsdom": "^15.1.1",
+    "node-rest-client": "^3.1.0"
+  }
+}
