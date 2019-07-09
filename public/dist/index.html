@@ -45,11 +45,9 @@
          let audio = document.querySelector("audio");
          let src = document.querySelector("source");
 
-         src.src = "";
          audio.pause();
-         setTimeout(() => {
-            audio.load();
-         }, 0);
+         src.src = "";
+         audio.load();
       }
 
       function playAudio(idx) {
