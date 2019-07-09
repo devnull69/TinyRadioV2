@@ -11,6 +11,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
+let port = process.env.PORT || 8081;
+
 // Add headers
 app.use(function (req, res, next) {
 
@@ -31,6 +33,6 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.listen("8081", () => {
+app.listen(port, () => {
    console.log("Server listening on port 8081 ...");
 });
