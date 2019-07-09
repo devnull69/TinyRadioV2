@@ -72,6 +72,8 @@
             stopAudio();
             let btn = document.querySelectorAll("button")[playing];
             btn.style.backgroundColor = "";
+            playing = -1;
+            currButton = null;
          });
 
          for(let i=0; i<stations.length; i++) {
