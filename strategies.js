@@ -92,17 +92,18 @@ class NRWLokalRadioStrategy {
 }
 
 class RadioDEStrategy {
-   constructor(stationNr) {
+   constructor(stationNr, pos) {
       this.stationNr = stationNr;
+      this.pos = pos;
    }
 
    getTitle() {
       return new Promise((resolve, reject) => {
-         client.get(`https://api.radio.de/info/v2/search/nowplaying?_=1562749410030&apikey=f69cc2b80499cb73c760ca2efcd8309a64f36585&numberoftitles=1&station=${this.stationNr}`, headers, (data, response) => {
+         client.get(`https://api.radio.de/info/v2/search/nowplaying?_=1562749410030&apikey=f69cc2b80499cb73c760ca2efcd8309a64f36585&numberoftitles=2&station=${this.stationNr}`, headers, (data, response) => {
             let result = "Aktueller Titel ist unbekannt";
             if(response.statusCode == 200) {
-               if(data && data[0])
-                  result = data[0].streamTitle;
+               if(data && data[this.pos])
+                  result = data[this.pos].streamTitle;
             }
             resolve(result);
          });

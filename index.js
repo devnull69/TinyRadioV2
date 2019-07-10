@@ -64,12 +64,12 @@ let stations = [{
          id: 5,
          name: "Metal Only",
          src: "http://server1.blitz-stream.de:4400/;080794759699378stream.nsv",
-         strategy: new strategies.RadioDEStrategy(4696)
+         strategy: new strategies.RadioDEStrategy(4696, 0)
       }, {
          id: 6,
          name: "Stahlradio",
          src: "http://54.36.135.248:5280/stream",
-         strategy: new strategies.RadioDEStrategy(10416)
+         strategy: new strategies.RadioDEStrategy(10416, 0)
       }, {
          id: 7,
          name: "Rockerportal",
@@ -104,7 +104,7 @@ let stations = [{
          id: 13,
          name: "Antenne Bayern 80er",
          src: "http://mp3channels.webradio.antenne.de/80er-kulthits",
-         strategy: new strategies.RadioDEStrategy(9123)
+         strategy: new strategies.RadioDEStrategy(9123, 0)
       }, {
          id: 14,
          name: "Radio Regenbogen 80er",
@@ -114,7 +114,7 @@ let stations = [{
          id: 15,
          name: "FFH 80er",
          src: "http://mp3.ffh.de/ffhchannels/hq80er.mp3",
-         strategy: new strategies.RadioDEStrategy(9710)
+         strategy: new strategies.RadioDEStrategy(9710, 0)
       }, {
          id: 16,
          name: "Laut FM 80er",
@@ -144,7 +144,7 @@ let stations = [{
          id: 21,
          name: "RPR1 Best of 80s",
          src: "http://streams.rpr1.de/rpr-80er-128-mp3?usid=0-0-H-M-D-06",
-         strategy: new strategies.RadioDEStrategy(9304)
+         strategy: new strategies.RadioDEStrategy(9304, 1)
       }, {
          id: 22,
          name: "Wunschradio FM 80er",
@@ -154,17 +154,17 @@ let stations = [{
          id: 23,
          name: "RPR1 Neue Deutsche Welle",
          src: "http://streams.rpr1.de/rpr-ndw-128-mp3?usid=0-0-H-M-D-06",
-         strategy: new strategies.RadioDEStrategy(41162)
+         strategy: new strategies.RadioDEStrategy(41162, 1)
       }, {
          id: 24,
          name: "80s80s NDW",
          src: "http://80s80s.hoerradar.de/80s80s-ndw-mp3-mq?sABC=5q25r1n2%230%232000r3268p2816383571rn5877123r83%23enqvbqr&amsparams=playerid:radiode;skey:1562763682",
-         strategy: new strategies.RadioDEStrategy(41403)
+         strategy: new strategies.RadioDEStrategy(41403, 0)
       }, {
          id: 25,
          name: "1A NDW",
          src: "http://1a-ndw.radionetz.de:8000/1a-ndw.mp3",
-         strategy: new strategies.RadioDEStrategy(110228)
+         strategy: new strategies.RadioDEStrategy(110228, 0)
       }, {
          id: 26,
          name: "Radio 91.2 Lokalradio",
@@ -179,27 +179,27 @@ let stations = [{
          id: 28,
          name: "1Live",
          src: "http://edge-2016.fra-lg.cdn.addradio.net/wdr/1live/live/mp3/128/stream.mp3?ar-distributor=f0a0",
-         strategy: new strategies.RadioDEStrategy(1382)
+         strategy: new strategies.RadioDEStrategy(1382, 0)
       }, {
          id: 29,
          name: "WDR2 - Ruhrgebiet",
          src: "http://edge-2019.fra-lg.cdn.addradio.net/wdr/wdr2/ruhrgebiet/mp3/128/stream.mp3?ar-distributor=f0a0",
-         strategy: new strategies.RadioDEStrategy(9773)
+         strategy: new strategies.RadioDEStrategy(9773, 0)
       }, {
          id: 30,
          name: "SWR3",
          src: "http://edge-2025.dus-lg.cdn.addradio.net/swr/swr3/live/mp3/128/stream.mp3?ar-distributor=f0a0",
-         strategy: new strategies.RadioDEStrategy(2275)
+         strategy: new strategies.RadioDEStrategy(2275, 0)
       }, {
          id: 31,
          name: "NDR2",
          src: "http://edge-203a.dus-lg.cdn.addradio.net/ndr/ndr2/niedersachsen/mp3/128/stream.mp3?ar-distributor=f0a0",
-         strategy: new strategies.RadioDEStrategy(2262)
+         strategy: new strategies.RadioDEStrategy(2262, 0)
       }, {
          id: 32,
          name: "Bayern3",
          src: "http://edge-209f.dus-lg.cdn.addradio.net/br/br3/live/mp3/128/stream.mp3?ar-distributor=f0a0",
-         strategy: new strategies.RadioDEStrategy(2247)
+         strategy: new strategies.RadioDEStrategy(2247, 0)
       }];
 
 
