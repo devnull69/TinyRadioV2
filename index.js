@@ -239,19 +239,20 @@ app.get("/api/init/:scope", async (req, res) => {
   let scope = req.params.scope;
   let result = [];
 
-  for(let station of stations) {
-    if(station.strategy) {
-      if(scope == "all" || station.scope == scope) {
-        let title = await station.strategy.getTitle();
+  let filteredStations = stations.filter(station => station.strategy && (scope == "all" || station.scope == scope));
 
-        let stationData = {...station};
-        stationData.strategy = undefined;
-        stationData.title = title;
-        stationData.active = true;
-        result.push(stationData);
-      }
-    }
+  let allResults = await Promise.all(filteredStations.map(station => station.strategy.getTitle()));
+
+  for(let i=0; i<filteredStations.length; i++) {
+    let station = filteredStations[i];
+    let stationData = {...station};
+    stationData.strategy = undefined;
+    stationData.title = allResults[i];
+    stationData.active = true;
+    result.push(stationData);
   }
+
+  console.dir(result);
 
   res.json(result);
 });
