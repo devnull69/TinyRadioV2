@@ -7,6 +7,7 @@ let jsdom = require('jsdom');
 let { JSDOM } = jsdom;
 
 let strategies = require('./strategies');
+let onlinechecker = require('./onlinechecker');
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -232,6 +233,60 @@ let stations = [{
          src: "http://edge-209f.dus-lg.cdn.addradio.net/br/br3/live/mp3/128/stream.mp3?ar-distributor=f0a0",
          scope: "Lokalradio",
          strategy: new strategies.RadioDEStrategy(2247, 0)
+      }, {
+         id: 33,
+         name: "R.SH 90er",
+         src: "http://regiocast.hoerradar.de/rsh-90er-mp3-hq",
+         scope: "90er",
+         strategy: new strategies.RSHStrategy(9)
+      }, {
+         id: 34,
+         name: "Radio Regenbogen 90er",
+         src: "http://streams.regenbogen.de/rr-90er-128-mp3",
+         scope: "90er",
+         strategy: new strategies.RegenbogenStrategy("90er")
+      }, {
+         id: 35,
+         name: "FFH 90er",
+         src: "http://mp3.ffh.de/ffhchannels/hq90er.mp3",
+         scope: "90er",
+         strategy: new strategies.RadioDEStrategy(22960, 0)
+      }, {
+         id: 36,
+         name: "Best of 90s",
+         src: "https://bestof90s.stream.laut.fm/best_of_90s",
+         scope: "90er",
+         strategy: new strategies.LautFMStrategy("best_of_90s")
+      }, {
+         id: 37,
+         name: "Germanradio 90er",
+         src: "http://germanradio.info:13300/;",
+         scope: "90er",
+         strategy: new strategies.RadioDEStrategy(33218, 0)
+      }, {
+         id: 38,
+         name: "90s90s",
+         src: "https://90s90s.hoerradar.de/90s90s-pop-mp3-hq?sABC=5q274229%230%23857psp88on39p1p3626785o66674n105%23ubzrcntr&context=fHA6LTE=&aw_0_1st.kuid=tsb7u9x35&aw_0_1st.ksg=[%22tow0oughf%22,%22tsrahp573%22,%22tow65wkpp%22,%22takaaes6u%22,%22ti5001c5h%22]&amsparams=playerid:homepage;skey:1562853929",
+         scope: "90er",
+         strategy: new strategies.NinetiesStrategy(141)
+      }, {
+         id: 39,
+         name: "Wunschradio FM 90er",
+         src: "http://server74.radiostreamserver.de/wunschradio-90er.mp3",
+         scope: "90er",
+         strategy: new strategies.WunschradioFMStrategy("90er")
+      }, {
+         id: 40,
+         name: "Tuner M1 90er",
+         src: "http://tuner.m1.fm/90er.mp3",
+         scope: "90er",
+         strategy: new strategies.RadioDEStrategy(40894, 0)
+      }, {
+         id: 41,
+         name: "Vienna.AT 90er",
+         src: "http://webradio.vienna.at/vie-90er",
+         scope: "90er",
+         strategy: new strategies.RadioDEStrategy(35386, 1)
       }];
 
 
@@ -243,16 +298,17 @@ app.get("/api/init/:scope", async (req, res) => {
 
   let allResults = await Promise.all(filteredStations.map(station => station.strategy.getTitle()));
 
+  //let allCheckResults = await Promise.all(filteredStations.map(station => onlinechecker(station.src)));
+
   for(let i=0; i<filteredStations.length; i++) {
     let station = filteredStations[i];
     let stationData = {...station};
     stationData.strategy = undefined;
     stationData.title = allResults[i];
+    //stationData.active = allCheckResults[i];
     stationData.active = true;
     result.push(stationData);
   }
-
-  console.dir(result);
 
   res.json(result);
 });

@@ -181,6 +181,26 @@ class WunschradioFMStrategy {
    }
 }
 
+class NinetiesStrategy {
+   constructor(stationNr) {
+      this.stationNr = stationNr;
+   }
+
+   getTitle() {
+      return new Promise((resolve, reject) => {
+         client.get(`https://iris-90s90s.loverad.io/flow.json?station=${this.stationNr}&offset=1&count=1&ts=1562854204648`, headers, (data, response) => {
+            let result = "Aktueller Titel ist unbekannt";
+            if(response.statusCode == 200) {
+               if(data && data.result && data.result.entry.length)
+                  result = data.result.entry[0].song.entry[0].artist.entry[0].name + " - " + data.result.entry[0].song.entry[0].title;
+            }
+            resolve(result);
+         });
+      });
+   }
+}
+
+
 module.exports = {
    LautFMStrategy: LautFMStrategy,
    RockAntenneStrategy: RockAntenneStrategy,
@@ -189,5 +209,6 @@ module.exports = {
    RadioDEStrategy: RadioDEStrategy,
    RSHStrategy: RSHStrategy,
    RegenbogenStrategy: RegenbogenStrategy,
-   WunschradioFMStrategy: WunschradioFMStrategy
+   WunschradioFMStrategy: WunschradioFMStrategy,
+   NinetiesStrategy: NinetiesStrategy
 }
