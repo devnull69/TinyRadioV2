@@ -146,7 +146,7 @@ class RegenbogenStrategy {
                if(data && data.hour.length) {
                   if(data.hour.length > 1) {
                      let titleDate = new Date(data.hour[data.hour.length - 1].date);
-                     if(titleDate > date) {
+                     if(titleDate > datum) {
                         result = data.hour[data.hour.length - 2].artist + " - " + data.hour[data.hour.length - 2].title;
                      } else {
                         result = data.hour[data.hour.length - 1].artist + " - " + data.hour[data.hour.length - 1].title;

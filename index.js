@@ -139,7 +139,7 @@ let stations = [{
          strategy: new strategies.LautFMStrategy("80er")
       }, {
          id: 17,
-         name: "Best of 80s - Jede Stunde ein neues Jahr",
+         name: "Best of 80s",
          src: "https://bestof80s.stream.laut.fm/best_of_80s",
          scope: "80er",
          strategy: new strategies.LautFMStrategy("best_of_80s")
