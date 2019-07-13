@@ -106,7 +106,8 @@ let stations = [{
          name: "Radio 91.2 80er Radio",
          scope: "80er",
          src: "http://dg-ais-eco-http-fra-eco-cdn.cast.addradio.de/rnrw-014D/dein80er/high/stream.mp3?ar-purpose=web&ar-distributor=f0b7&sid=014d",
-         strategy: new strategies.NRWLokalRadioStrategy(1001)
+         strategy: new strategies.NRWLokalRadioStrategy(1001),
+         titlecase: true
       }, {
          id: 12,
          name: "R.SH 80er",
@@ -124,7 +125,8 @@ let stations = [{
          name: "Radio Regenbogen 80er",
          src: "http://streams.regenbogen.de/rr-80er-128-mp3",
          scope: "80er",
-         strategy: new strategies.RegenbogenStrategy("80er")
+         strategy: new strategies.RegenbogenStrategy("80er"),
+         titlecase: true
       }, {
          id: 15,
          name: "FFH 80er",
@@ -166,7 +168,8 @@ let stations = [{
          name: "RPR1 Best of 80s",
          src: "http://streams.rpr1.de/rpr-80er-128-mp3?usid=0-0-H-M-D-06",
          scope: "80er",
-         strategy: new strategies.RadioDEStrategy(9304, 1)
+         strategy: new strategies.RadioDEStrategy(9304, 1),
+         titlecase: true
       }, {
          id: 22,
          name: "Wunschradio FM 80er",
@@ -178,7 +181,8 @@ let stations = [{
          name: "RPR1 Neue Deutsche Welle",
          src: "http://streams.rpr1.de/rpr-ndw-128-mp3?usid=0-0-H-M-D-06",
          scope: "NDW",
-         strategy: new strategies.RadioDEStrategy(41162, 1)
+         strategy: new strategies.RadioDEStrategy(41162, 1),
+         titlecase: true
       }, {
          id: 24,
          name: "80s80s NDW",
@@ -196,7 +200,8 @@ let stations = [{
          name: "Radio 91.2 Lokalradio",
          src: "http://dg-ais-eco-http-fra-eco-cdn.cast.addradio.de/radio912/live/mp3/high?ar-distributor=f0b7",
          scope: "Lokalradio",
-         strategy: new strategies.NRWLokalRadioStrategy(6)
+         strategy: new strategies.NRWLokalRadioStrategy(6),
+         titlecase: true
       }, {
          id: 27,
          name: "R.SH",
@@ -244,7 +249,8 @@ let stations = [{
          name: "Radio Regenbogen 90er",
          src: "http://streams.regenbogen.de/rr-90er-128-mp3",
          scope: "90er",
-         strategy: new strategies.RegenbogenStrategy("90er")
+         strategy: new strategies.RegenbogenStrategy("90er"),
+         titlecase: true
       }, {
          id: 35,
          name: "FFH 90er",
