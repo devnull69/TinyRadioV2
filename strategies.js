@@ -7,20 +7,20 @@ let requester = require('request');
 let headers = {
    headers: {"Accept": "application/json"},
    requestConfig: {
-      timeout: 1000
+      timeout: 1500
    },
    responseConfig: {
-      timeout: 1000
+      timeout: 1500
    }
 }
 
 let HTMLheaders = {
    headers: {"Accept": "text/html"},
    requestConfig: {
-      timeout: 1000
+      timeout: 1500
    },
    responseConfig: {
-      timeout: 1000
+      timeout: 1500
    }
 }
 

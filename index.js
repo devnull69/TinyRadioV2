@@ -168,7 +168,7 @@ let stations = [{
          name: "RPR1 Best of 80s",
          src: "http://streams.rpr1.de/rpr-80er-128-mp3?usid=0-0-H-M-D-06",
          scope: "80er",
-         strategy: new strategies.RadioDEStrategy(9304, 1),
+         strategy: new strategies.RadioDEStrategy(9304, 0),
          titlecase: true
       }, {
          id: 22,
@@ -292,7 +292,7 @@ let stations = [{
          name: "Vienna.AT 90er",
          src: "http://webradio.vienna.at/vie-90er",
          scope: "90er",
-         strategy: new strategies.RadioDEStrategy(35386, 1)
+         strategy: new strategies.OnlineRadioBoxStrategy("at.viennaat90er")
       }, {
          id: 42,
          name: "Radio BOB! Metal",
