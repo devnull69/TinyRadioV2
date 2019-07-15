@@ -268,7 +268,7 @@ let stations = [{
          name: "Germanradio 90er",
          src: "http://germanradio.info:13300/;",
          scope: "90er",
-         strategy: new strategies.RadioDEStrategy(33218, 0)
+         strategy: new strategies.OnlineRadioBoxStrategy("de.germanradioinfo90er")
       }, {
          id: 38,
          name: "90s90s",

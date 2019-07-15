@@ -2,6 +2,7 @@ let Client = require('node-rest-client').Client;
 let client = new Client();
 let jsdom = require('jsdom');
 let { JSDOM } = jsdom;
+let requester = require('request');
 
 let headers = {
    headers: {"Accept": "application/json"},
@@ -284,6 +285,36 @@ class NinetiesStrategy {
    }
 }
 
+class OnlineRadioBoxStrategy {
+   constructor(stationName) {
+      this.stationName = stationName;
+   }
+
+   getTitle() {
+      let result = "Aktueller Titel ist unbekannt";
+      return new Promise((resolve, reject) => {
+         let requestSettings = {
+            method: 'GET',
+            url: `https://scraper2.onlineradiobox.com/${this.stationName}?l=0`
+         };
+
+         requester(requestSettings, function(err, response, body) {
+            if(err) {
+               resolve(result);
+               return;
+            }
+
+            let bodyObj = JSON.parse(body);
+
+            result = bodyObj.title;
+
+            resolve(result);
+
+         });
+      });
+   }
+}
+
 
 module.exports = {
    LautFMStrategy: LautFMStrategy,
@@ -294,5 +325,6 @@ module.exports = {
    RSHStrategy: RSHStrategy,
    RegenbogenStrategy: RegenbogenStrategy,
    WunschradioFMStrategy: WunschradioFMStrategy,
-   NinetiesStrategy: NinetiesStrategy
+   NinetiesStrategy: NinetiesStrategy,
+   OnlineRadioBoxStrategy: OnlineRadioBoxStrategy
 }
