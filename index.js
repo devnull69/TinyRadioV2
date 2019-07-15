@@ -168,7 +168,7 @@ let stations = [{
          name: "RPR1 Best of 80s",
          src: "http://streams.rpr1.de/rpr-80er-128-mp3?usid=0-0-H-M-D-06",
          scope: "80er",
-         strategy: new strategies.RadioDEStrategy(9304, 0),
+         strategy: new strategies.OnlineRadioBoxStrategy("de.rpr280er"),
          titlecase: true
       }, {
          id: 22,
