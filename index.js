@@ -105,7 +105,7 @@ let stations = [{
          id: 11,
          name: "Radio 91.2 80er Radio",
          scope: "80er",
-         src: "http://dg-ais-eco-http-fra-eco-cdn.cast.addradio.de/rnrw-014D/dein80er/high/stream.mp3?ar-purpose=web&ar-distributor=f0b7&sid=014d",
+         src: "http://rnrw-ais-edge-3002.fra-eco.cdn.addradio.net/rnrw-014d/dein80er/high/stream.mp3?ar-purpose=web&ar-distributor=f0b7&sid=014d",
          strategy: new strategies.NRWLokalRadioStrategy(1001),
          titlecase: true
       }, {
@@ -198,7 +198,7 @@ let stations = [{
       }, {
          id: 26,
          name: "Radio 91.2 Lokalradio",
-         src: "http://dg-ais-eco-http-fra-eco-cdn.cast.addradio.de/radio912/live/mp3/high?ar-distributor=f0b7",
+         src: "http://radio912-ais-edge-3004.fra-eco.cdn.addradio.net/radio912/live/mp3/high?ar-distributor=f0b7",
          scope: "Lokalradio",
          strategy: new strategies.NRWLokalRadioStrategy(6),
          titlecase: true
