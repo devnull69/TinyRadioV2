@@ -14,13 +14,23 @@ let headers = {
    }
 }
 
-let HTMLheaders = {
+let HTMLheadersStandard = {
    headers: {"Accept": "text/html"},
    requestConfig: {
       timeout: 1500
    },
    responseConfig: {
       timeout: 1500
+   }
+}
+
+let HTMLheadersLongRunning = {
+   headers: {"Accept": "text/html"},
+   requestConfig: {
+      timeout: 7000
+   },
+   responseConfig: {
+      timeout: 7000
    }
 }
 
@@ -90,7 +100,7 @@ class WackenRadioStrategy {
    getTitle() {
       let result = "Aktueller Titel ist unbekannt";
       return new Promise((resolve, reject) => {
-         let req = client.get(`http://www.rautemusik.fm/wackenradio/`, HTMLheaders , (data, response) => {
+         let req = client.get(`http://www.rautemusik.fm/wackenradio/`, HTMLheadersStandard , (data, response) => {
             if(response.statusCode == 200) {
                let { document } = new JSDOM(data).window;
                result = document.querySelector('.artist').textContent + " - " + document.querySelector('.title').textContent
@@ -315,6 +325,35 @@ class OnlineRadioBoxStrategy {
    }
 }
 
+class StahlRadioStrategy {
+   constructor() {
+   }
+
+   getTitle() {
+      let result = "Aktueller Titel ist unbekannt";
+      return new Promise((resolve, reject) => {
+         let req = client.get(`https://widgets.autopo.st/widgets/public/Kami/webplayer/post_webplayer.php?indexuser=Kami`, HTMLheadersLongRunning , (data, response) => {
+            if(response.statusCode == 200) {
+               let { document } = new JSDOM(data).window;
+
+               let href = document.querySelector("a").href;
+
+               result = href.match(/field\-keywords\=(.*)$/)[1].replace(/\_/g, " ");
+            }
+            resolve(result);
+         });
+
+         req.on("requestTimeout", (request) => {
+            resolve(result);
+         });
+
+         req.on("responseTimeout", (request) => {
+            resolve(result);
+         });
+      });
+   }
+}
+
 
 module.exports = {
    LautFMStrategy: LautFMStrategy,
@@ -326,5 +365,6 @@ module.exports = {
    RegenbogenStrategy: RegenbogenStrategy,
    WunschradioFMStrategy: WunschradioFMStrategy,
    NinetiesStrategy: NinetiesStrategy,
-   OnlineRadioBoxStrategy: OnlineRadioBoxStrategy
+   OnlineRadioBoxStrategy: OnlineRadioBoxStrategy,
+   StahlRadioStrategy: StahlRadioStrategy
 }

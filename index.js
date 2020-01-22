@@ -76,7 +76,7 @@ let stations = [{
          name: "Stahlradio",
          src: "http://54.36.135.248:5280/stream",
          scope: "heavymetal",
-         strategy: new strategies.RadioDEStrategy(10416, 0)
+         strategy: new strategies.StahlRadioStrategy()
       }, {
          id: 7,
          name: "Rockerportal",
