@@ -145,7 +145,7 @@ class RadioDEStrategy {
    getTitle() {
       let result = "Aktueller Titel ist unbekannt";
       return new Promise((resolve, reject) => {
-         let req = client.get(`https://api.radio.de/info/v2/search/nowplaying?_=1562749410030&apikey=f69cc2b80499cb73c760ca2efcd8309a64f36585&numberoftitles=2&station=${this.stationNr}`, headers, (data, response) => {
+         let req = client.get(`https://api.radio.de/info/v2/search/nowplaying?apikey=d0c95d28a9a899c628c35fa959e9e0ee3c1b924c&numberoftitles=2&station=${this.stationNr}`, headers, (data, response) => {
             if(response.statusCode == 200) {
                if(data && data[this.pos])
                   result = data[this.pos].streamTitle;
