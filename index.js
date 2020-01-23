@@ -50,7 +50,7 @@ let stations = [{
       }, {
          id: 2,
          name: "Wacken Radio",
-         src: "https://de-hz-fal-stream02.rautemusik.fm/wackenradio",
+         src: "https://wackenradio-high.rautemusik.fm/stream.mp3?ref=page",
          scope: "heavymetal",
          strategy: new strategies.WackenRadioStrategy()
       }, {
