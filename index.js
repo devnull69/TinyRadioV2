@@ -70,7 +70,7 @@ let stations = [{
          name: "Metal Only",
          src: "http://server1.blitz-stream.de:4400/;080794759699378stream.nsv",
          scope: "heavymetal",
-         strategy: new strategies.RadioDEStrategy(4696, 0)
+         strategy: new strategies.OnlineRadioBoxStrategy("de.metalonly"),
       }, {
          id: 6,
          name: "Stahlradio",
@@ -105,7 +105,7 @@ let stations = [{
          id: 11,
          name: "Radio 91.2 80er Radio",
          scope: "80er",
-         src: "http://rnrw-ais-edge-3002.fra-eco.cdn.addradio.net/rnrw-014d/dein80er/high/stream.mp3?ar-purpose=web&ar-distributor=f0b7&sid=014d",
+         src: "https://rnrw-ais-edge-3102-fra-eco-cdn.cast.addradio.de/rnrw-014d/dein80er/high/stream.mp3?ar-distributor=ffa0&sid=014d&kombi=Dortmund&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLW42MnJrZnhrYiZ0PTE1OTcxNDQ2NDYmcz03ODY2ZjI5YyM1MDJlYTk2ZDNiOTEyY2NmNjQ2MzUyMTcwNWQ1OThiZA",
          strategy: new strategies.NRWLokalRadioStrategy(1001),
          titlecase: true
       }, {
@@ -113,7 +113,7 @@ let stations = [{
          name: "R.SH 80er",
          src: "http://regiocast.hoerradar.de/rsh-80er-mp3-hq",
          scope: "80er",
-         strategy: new strategies.RSHStrategy(5)
+         strategy: new strategies.RSHStrategy("R.SH 80er")
       }, {
          id: 13,
          name: "Antenne Bayern 80er",
@@ -188,7 +188,7 @@ let stations = [{
          name: "80s80s NDW",
          src: "http://80s80s.hoerradar.de/80s80s-ndw-mp3-mq?sABC=5q25r1n2%230%232000r3268p2816383571rn5877123r83%23enqvbqr&amsparams=playerid:radiode;skey:1562763682",
          scope: "NDW",
-         strategy: new strategies.RadioDEStrategy(41403, 0)
+         strategy: new strategies.OnlineRadioBoxStrategy("de.80s80sndw")
       }, {
          id: 25,
          name: "1A NDW",
@@ -198,7 +198,7 @@ let stations = [{
       }, {
          id: 26,
          name: "Radio 91.2 Lokalradio",
-         src: "http://radio912-ais-edge-3004.fra-eco.cdn.addradio.net/radio912/live/mp3/high?ar-distributor=f0b7",
+         src: "https://radio912-ais-edge-3104-fra-eco-cdn.cast.addradio.de/radio912/live/mp3/high?ar-distributor=ffa0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLXR0emRyenVtYiZ0PTE1OTcxNDQ0NzUmcz03ODY2ZjI5YyNiZTA5ZDhiNDVmNmUyZWQyMTVhOTEwYzdmMzFjZWRmMw",
          scope: "Lokalradio",
          strategy: new strategies.NRWLokalRadioStrategy(6),
          titlecase: true
@@ -207,35 +207,35 @@ let stations = [{
          name: "R.SH",
          src: "http://regiocast.hoerradar.de/rsh128",
          scope: "Lokalradio",
-         strategy: new strategies.RSHStrategy(1)
+         strategy: new strategies.RSHStrategy("R.SH Live")
       }, {
          id: 28,
          name: "1Live",
-         src: "http://edge-2016.fra-lg.cdn.addradio.net/wdr/1live/live/mp3/128/stream.mp3?ar-distributor=f0a0",
+         src: "https://wdr-edge-2020-fra-lg-cdn.cast.addradio.de/wdr/1live/live/mp3/128/stream.mp3?ar-distributor=f0a0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLXgyY3NzeWxsYiZ0PTE1OTcxNDQ5Njgmcz03ODY2ZjI5YyNlNTY5YmY0MWJlMGE4MzEzOGYzNzQwYjE1OTc1MzU0MA",
          scope: "Lokalradio",
          strategy: new strategies.RadioDEStrategy(1382, 0)
       }, {
          id: 29,
          name: "WDR2 - Ruhrgebiet",
-         src: "http://edge-2019.fra-lg.cdn.addradio.net/wdr/wdr2/ruhrgebiet/mp3/128/stream.mp3?ar-distributor=f0a0",
+         src: "https://wdr-edge-201b-dus-lg-cdn.cast.addradio.de/wdr/wdr2/ruhrgebiet/mp3/128/stream.mp3?ar-distributor=f0a0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLWw2Y3NzeWxsYiZ0PTE1OTcxNDUwNzQmcz03ODY2ZjI5YyNhNWNjZmY3OTJlZWMwZWUwNTM0MTIxNDFjZmZlYTgwYw",
          scope: "Lokalradio",
          strategy: new strategies.RadioDEStrategy(9773, 0)
       }, {
          id: 30,
          name: "SWR3",
-         src: "http://edge-2025.dus-lg.cdn.addradio.net/swr/swr3/live/mp3/128/stream.mp3?ar-distributor=f0a0",
+         src: "https://swr-edge-2031-dus-lg-cdn.cast.addradio.de/swr/swr3/live/aac/96/stream.aac?ar-distributor=f0a0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLXZ5c2UzMmxsYiZ0PTE1OTcxNDUyMjAmcz03ODY2ZjI5YyM4YzBjMTcyZDViMTQ5YTNlMTI0YWQyZWUwMzNjOGJjYQ",
          scope: "Lokalradio",
          strategy: new strategies.RadioDEStrategy(2275, 0)
       }, {
          id: 31,
          name: "NDR2",
-         src: "http://edge-203a.dus-lg.cdn.addradio.net/ndr/ndr2/niedersachsen/mp3/128/stream.mp3?ar-distributor=f0a0",
+         src: "https://ndr-edge-20b2-fra-lg-cdn.cast.addradio.de/ndr/ndr2/niedersachsen/mp3/128/stream.mp3?ar-distributor=f0a0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLWhpdW9jM2xsYiZ0PTE1OTcxNDUzMDMmcz03ODY2ZjI5YyNjMmY3ZGRhMGQwYTdjZWE0NGRmYzQ4YWRiOGE0ZTlmOA",
          scope: "Lokalradio",
          strategy: new strategies.RadioDEStrategy(2262, 0)
       }, {
          id: 32,
          name: "Bayern3",
-         src: "http://edge-209f.dus-lg.cdn.addradio.net/br/br3/live/mp3/128/stream.mp3?ar-distributor=f0a0",
+         src: "https://br-edge-2009-dus-lg-cdn.cast.addradio.de/br/br3/live/mp3/128/stream.mp3?ar-distributor=f0a0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLWRzcWR4d2tsYiZ0PTE1OTcxNDUzNjImcz03ODY2ZjI5YyM2ZTZiMjJjZjY5NGJiNWRiNzVmMDk2ODQ1ZWVkMjYyYg",
          scope: "Lokalradio",
          strategy: new strategies.RadioDEStrategy(2247, 0)
       }, {
@@ -243,7 +243,7 @@ let stations = [{
          name: "R.SH 90er",
          src: "http://regiocast.hoerradar.de/rsh-90er-mp3-hq",
          scope: "90er",
-         strategy: new strategies.RSHStrategy(9)
+         strategy: new strategies.RSHStrategy("R.SH 90er")
       }, {
          id: 34,
          name: "Radio Regenbogen 90er",
@@ -283,10 +283,10 @@ let stations = [{
          strategy: new strategies.WunschradioFMStrategy("90er")
       }, {
          id: 40,
-         name: "Tuner M1 90er",
+         name: "M1.FM 90er",
          src: "http://tuner.m1.fm/90er.mp3",
          scope: "90er",
-         strategy: new strategies.RadioDEStrategy(40894, 0)
+         strategy: new strategies.OnlineRadioBoxStrategy("de.m190er")
       }, {
          id: 41,
          name: "Vienna.AT 90er",
@@ -298,7 +298,7 @@ let stations = [{
          name: "Radio BOB! Metal",
          src: "http://bob.hoerradar.de/radiobob-metal-mp3-mq?sABC=5q2902po%230%23857psp88on39p1p3626785o66674n105%23enqvbqr&amsparams=playerid:radiode;skey:1562968779",
          scope: "heavymetal",
-         strategy: new strategies.RadioDEStrategy(39028, 0)
+         strategy: new strategies.OnlineRadioBoxStrategy("de.bobsmetal")
       }, {
          id: 43,
          name: "Metal Up Your Ass",

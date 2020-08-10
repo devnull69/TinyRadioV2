@@ -3,6 +3,7 @@ let client = new Client();
 let jsdom = require('jsdom');
 let { JSDOM } = jsdom;
 let requester = require('request');
+let _ = require('lodash');
 
 let headers = {
    headers: {"Accept": "application/json"},
@@ -175,8 +176,8 @@ class RadioDEStrategy {
 }
 
 class RSHStrategy {
-   constructor(stationNr) {
-      this.stationNr = stationNr;
+   constructor(stationName) {
+      this.stationName = stationName;
    }
 
    getTitle() {
@@ -184,8 +185,14 @@ class RSHStrategy {
       return new Promise((resolve, reject) => {
          let req = client.get(`http://stream-service.loverad.io/v3/rsh?_=`, headers, (data, response) => {
             if(response.statusCode == 200) {
-               if(data && data[this.stationNr])
-                  result = data[this.stationNr]["artist_name"] + " - " + data[this.stationNr]["song_title"];
+               if(data) {
+                  data = _.values(data);
+
+                  for(let entry of data) {
+                     if(entry.stream == this.stationName)
+                        result = entry["artist_name"] + " - " + entry["song_title"];
+                  }
+               }
             }
             resolve(result);
          });
@@ -332,23 +339,26 @@ class StahlRadioStrategy {
    getTitle() {
       let result = "Aktueller Titel ist unbekannt";
       return new Promise((resolve, reject) => {
-         let req = client.get(`https://widgets.autopo.st/widgets/public/Kami/webplayer/post_webplayer.php?indexuser=Kami`, HTMLheadersLongRunning , (data, response) => {
-            if(response.statusCode == 200) {
-               let { document } = new JSDOM(data).window;
-
-               let href = document.querySelector("a").href;
-
-               result = href.match(/field\-keywords\=(.*)$/)[1].replace(/\_/g, " ");
+         let requestSettings = {
+            method: 'GET',
+            url: `https://www.lembeck.de/wp-admin/admin-ajax.php?action=update_stream_title&data%5B0%5D%5Bid%5D=44945&data%5B0%5D%5Bsrc%5D=https%3A%2F%2Fwww.lembeck.de%2Fstation%2Fstahlradio%2F%3Fplay%3D1`,
+            headers: {
+               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36'
             }
-            resolve(result);
-         });
+         };
 
-         req.on("requestTimeout", (request) => {
-            resolve(result);
-         });
+         requester(requestSettings, function(err, response, body) {
+            if(err) {
+               resolve(result);
+               return;
+            }
 
-         req.on("responseTimeout", (request) => {
+            let bodyObj = JSON.parse(body);
+
+            result = bodyObj.data["44945"];
+
             resolve(result);
+
          });
       });
    }
