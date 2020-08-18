@@ -105,7 +105,7 @@ let stations = [{
          id: 11,
          name: "Radio 91.2 80er Radio",
          scope: "80er",
-         src: "https://rnrw-ais-edge-3102-fra-eco-cdn.cast.addradio.de/rnrw-014d/dein80er/high/stream.mp3?ar-distributor=ffa0&sid=014d&kombi=Dortmund&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLW42MnJrZnhrYiZ0PTE1OTcxNDQ2NDYmcz03ODY2ZjI5YyM1MDJlYTk2ZDNiOTEyY2NmNjQ2MzUyMTcwNWQ1OThiZA",
+         src: "https://rnrw-ais-edge-3106-fra-eco-cdn.cast.addradio.de/rnrw-014d/dein80er/high/stream.mp3?ar-distributor=ffa0&sid=014d&kombi=Dortmund&_art=dj0yJmlwPTc5LjIxNi4yMS4xODcmaWQ9aWNzY3hsLW42MnJrZnhrYiZ0PTE1OTc4NDc1OTEmcz03ODY2ZjI5YyM3ZTRiNTU0ODQxMjViY2ZiNGE3MTNkNTg0MmYyZjAyMw",
          strategy: new strategies.NRWLokalRadioStrategy(1001),
          titlecase: true
       }, {
