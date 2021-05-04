@@ -101,22 +101,27 @@ class WackenRadioStrategy {
    getTitle() {
       let result = "Aktueller Titel ist unbekannt";
       return new Promise((resolve, reject) => {
-         let req = client.get(`http://www.rautemusik.fm/wackenradio/`, HTMLheadersStandard , (data, response) => {
-            if(response.statusCode == 200) {
-               let { document } = new JSDOM(data).window;
-               result = document.querySelector('.artist').textContent + " - " + document.querySelector('.title').textContent
-            }
-            resolve(result);
-         });
-
-         req.on("requestTimeout", (request) => {
-            resolve(result);
-         });
-
-         req.on("responseTimeout", (request) => {
-            resolve(result);
-         });
+         resolve(result);
       });
+      // let result = "Aktueller Titel ist unbekannt";
+      // return new Promise((resolve, reject) => {
+      //    let req = client.get(`http://www.rautemusik.fm/wackenradio/`, HTMLheadersStandard , (data, response) => {
+      //       if(response.statusCode == 200) {
+      //          console.log(data);
+      //          let { document } = new JSDOM(data).window;
+      //          result = document.querySelector('.artist').textContent + " - " + document.querySelector('.title').textContent
+      //       }
+      //       resolve(result);
+      //    });
+
+      //    req.on("requestTimeout", (request) => {
+      //       resolve(result);
+      //    });
+
+      //    req.on("responseTimeout", (request) => {
+      //       resolve(result);
+      //    });
+      // });
    }
 }
 

@@ -44,95 +44,110 @@ app.listen(port, () => {
 let stations = [{
          id: 1,
          name: "Rock Antenne Heavy Metal",
-         src: "https://mp3channels.webradio.de/heavy-metal?&aw_0_1st.playerid=RockAntenneWebPlayer&aw_0_1st.listenerid=80423ecc532e6d7ebfe863577b38f2fc&aw_0_1st.skey=1562653242&aw_0_1st.gpslat=51.514&aw_0_1st.gpslong=7.476&aw_0_req.gdpr=true&aw_0_1st.spotcom=%5B%5D",
+         src: "https://s1-webradio.webradio.de/heavy-metal?&aw_0_1st.playerid=RockAntenneWebPlayer&aw_0_1st.skey=1605081914&aw_0_req.gdpr=false&companionAds=false&aw_0_1st.spotcom=%5B%5D",
          scope: "heavymetal",
-         strategy: new strategies.RockAntenneStrategy("heavy-metal")
+         strategy: new strategies.RockAntenneStrategy("heavy-metal"),
+         espradio: true
       }, {
          id: 2,
          name: "Wacken Radio",
-         src: "https://wackenradio-high.rautemusik.fm/stream.mp3?ref=page",
+         src: "https://rautemusik-de-hz-fal-stream12.radiohost.de/wackenradio?ref=rm5beta",
          scope: "heavymetal",
-         strategy: new strategies.WackenRadioStrategy()
+         strategy: new strategies.WackenRadioStrategy(),
+         espradio: false
       }, {
          id: 3,
          name: "Metal Hammer",
          src: "https://metal-hammer.stream.laut.fm/metal-hammer",
          scope: "heavymetal",
-         strategy: new strategies.LautFMStrategy("metal-hammer")
+         strategy: new strategies.LautFMStrategy("metal-hammer"),
+         espradio: true
       }, {
          id: 4,
          name: "Up The Irons",
          src: "https://uptheirons.stream.laut.fm/up_the_irons",
          scope: "heavymetal",
-         strategy: new strategies.LautFMStrategy("up_the_irons")
+         strategy: new strategies.LautFMStrategy("up_the_irons"),
+         espradio: true
       }, {
          id: 5,
          name: "Metal Only",
-         src: "http://server1.blitz-stream.de:4400/;080794759699378stream.nsv",
+         src: "http://nordic.streampanel.cloud/stream",
          scope: "heavymetal",
          strategy: new strategies.OnlineRadioBoxStrategy("de.metalonly"),
+         espradio: true
       }, {
          id: 6,
          name: "Stahlradio",
          src: "http://54.36.135.248:5280/stream",
          scope: "heavymetal",
-         strategy: new strategies.StahlRadioStrategy()
+         strategy: new strategies.StahlRadioStrategy(),
+         espradio: true
       }, {
          id: 7,
          name: "Rockerportal",
          src: "https://rockerportal.stream.laut.fm/rockerportal",
          scope: "heavymetal",
-         strategy: new strategies.LautFMStrategy("rockerportal")
+         strategy: new strategies.LautFMStrategy("rockerportal"),
+         espradio: true
       }, {
          id: 8,
          name: "Motorbreath",
          src: "https://motorbreath.stream.laut.fm/motorbreath",
          scope: "heavymetal",
-         strategy: new strategies.LautFMStrategy("motorbreath")
+         strategy: new strategies.LautFMStrategy("motorbreath"),
+         espradio: true
       }, {
          id: 9,
          name: "Metalstation",
          src: "https://metalstation.stream.laut.fm/metalstation",
          scope: "heavymetal",
-         strategy: new strategies.LautFMStrategy("metalstation")
+         strategy: new strategies.LautFMStrategy("metalstation"),
+         espradio: true
       }, {
          id: 10,
          name: "Metal FM",
          src: "https://metal-fm-com.stream.laut.fm/metal-fm-com",
          scope: "heavymetal",
-         strategy: new strategies.LautFMStrategy("metal-fm-com")
+         strategy: new strategies.LautFMStrategy("metal-fm-com"),
+         espradio: true
       }, {
          id: 11,
          name: "Radio 91.2 80er Radio",
          scope: "80er",
-         src: "https://rnrw-ais-edge-3106-fra-eco-cdn.cast.addradio.de/rnrw-014d/dein80er/high/stream.mp3?ar-distributor=ffa0&sid=014d&kombi=Dortmund&_art=dj0yJmlwPTc5LjIxNi4yNS4xMiZpZD1pY3NjeGwtbjYycmtmeGtiJnQ9MTYwMDc2NTU3NCZzPTc4NjZmMjljI2FkYWY1MmIyYTM0YmMzNWQyM2VkMTZjNmIzMDY4YTU2",
+         src: "https://rnrw-ais-edge-3103-fra-eco-cdn.cast.addradio.de/rnrw/dein80er/high/stream.mp3?ar-distributor=ffa0&sid=014d&kombi=Dortmund&_art=dj0yJmlwPTc5LjIxNi4yMy4xODEmaWQ9aWNzY3hsLW42MnJrZnhrYiZ0PTE2MDUxODkwOTEmcz03ODY2ZjI5YyM1MGU0YWQxY2QwYWZhYjEwNzg5NzRkZjNlYTQ5MTM5ZQ",
          strategy: new strategies.NRWLokalRadioStrategy(1001),
-         titlecase: true
+         titlecase: true,
+         espradio: true
       }, {
          id: 12,
          name: "R.SH 80er",
          src: "http://regiocast.hoerradar.de/rsh-80er-mp3-hq",
          scope: "80er",
-         strategy: new strategies.RSHStrategy("R.SH 80er")
+         strategy: new strategies.RSHStrategy("R.SH 80er"),
+         espradio: true
       }, {
          id: 13,
          name: "Antenne Bayern 80er",
-         src: "http://mp3channels.webradio.antenne.de/80er-kulthits",
+         src: "https://s10-webradio.antenne.de/80er-kulthits/stream/mp3",
          scope: "80er",
-         strategy: new strategies.RadioDEStrategy(9123, 0)
+         strategy: new strategies.RadioDEStrategy(9123, 0),
+         espradio: true
       }, {
          id: 14,
          name: "Radio Regenbogen 80er",
          src: "http://streams.regenbogen.de/rr-80er-128-mp3",
          scope: "80er",
          strategy: new strategies.RegenbogenStrategy("80er"),
-         titlecase: true
+         titlecase: true,
+         espradio: true
       }, {
          id: 15,
          name: "FFH 80er",
          src: "http://mp3.ffh.de/ffhchannels/hq80er.mp3",
          scope: "80er",
-         strategy: new strategies.RadioDEStrategy(9710, 0)
+         strategy: new strategies.RadioDEStrategy(9710, 0),
+         espradio: true
       }, {
          id: 16,
          name: "Laut FM 80er",
