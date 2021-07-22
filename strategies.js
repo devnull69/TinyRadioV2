@@ -348,7 +348,8 @@ class StahlRadioStrategy {
             method: 'GET',
             url: `https://kastproxy-us.herokuapp.com/https://saurus.streampanel.net:5280//status-json.xsl`,
             headers: {
-               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36'
+               'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36',
+               'origin': 'https://www.stahlradio.com'
             }
          };
 
