@@ -79,7 +79,7 @@ let stations = [{
       }, {
          id: 6,
          name: "Stahlradio",
-         src: "http://54.36.135.248:5280/stream",
+         src: "https://simba.streampanel.cloud:5280/stream",
          scope: "heavymetal",
          strategy: new strategies.StahlRadioStrategy(),
          espradio: true
@@ -310,18 +310,12 @@ let stations = [{
          strategy: new strategies.OnlineRadioBoxStrategy("de.m190er")
       }, {
          id: 42,
-         name: "Vienna.AT 90er",
-         src: "http://webradio.vienna.at/vie-90er",
-         scope: "90er",
-         strategy: new strategies.OnlineRadioBoxStrategy("at.viennaat90er")
-      }, {
-         id: 43,
          name: "Radio BOB! Metal",
          src: "http://bob.hoerradar.de/radiobob-metal-mp3-mq?sABC=5q2902po%230%23857psp88on39p1p3626785o66674n105%23enqvbqr&amsparams=playerid:radiode;skey:1562968779",
          scope: "heavymetal",
          strategy: new strategies.OnlineRadioBoxStrategy("de.bobsmetal")
       }, {
-         id: 44,
+         id: 43,
          name: "Metal Up Your Ass",
          src: "https://metal-up-your-ass.stream.laut.fm/metal-up-your-ass?ref=radiode&t302=2019-07-13_00-10-38&uuid=3935ca92-bf30-4e4b-a1d2-f8c0bf0ad7ce",
          scope: "heavymetal",

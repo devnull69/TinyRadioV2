@@ -346,7 +346,7 @@ class StahlRadioStrategy {
       return new Promise((resolve, reject) => {
          let requestSettings = {
             method: 'GET',
-            url: `https://www.lembeck.de/wp-admin/admin-ajax.php?action=update_stream_title&data%5B0%5D%5Bid%5D=44945&data%5B0%5D%5Bsrc%5D=https%3A%2F%2Fwww.lembeck.de%2Fstation%2Fstahlradio%2F%3Fplay%3D1`,
+            url: `https://kastproxy-us.herokuapp.com/https://saurus.streampanel.net:5280//status-json.xsl`,
             headers: {
                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36'
             }
@@ -360,7 +360,7 @@ class StahlRadioStrategy {
 
             let bodyObj = JSON.parse(body);
 
-            result = bodyObj.data["44945"];
+            result = bodyObj.icestats.source[0].artist + " - " + bodyObj.icestats.source[0].title;
 
             resolve(result);
 
