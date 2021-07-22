@@ -99,7 +99,7 @@ class WackenRadioStrategy {
    }
 
    getTitle() {
-      let result = "Aktueller Titel ist unbekannt";
+      let result = "Keine Titelinfos verfügbar";
       return new Promise((resolve, reject) => {
          resolve(result);
       });
