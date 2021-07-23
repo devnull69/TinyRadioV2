@@ -39,6 +39,35 @@ function twoDigits(num) {
    return ("0" + num).slice(-2);
 }
 
+class RedirectStrategy {
+   constructor(url) {
+      this.url = url;
+   }
+
+   getRedirectUrl() {
+      let result = this.url;
+      console.log("REDIRECT STRATEGY starting for " + this.url);
+      return new Promise((resolve, reject) => {
+         let requestSettings = {
+            method: 'GET',
+            url: 'http://addrad.io/444zfxx',
+            followRedirect: false
+         };
+        
+         requester(requestSettings, function(err, response, body) {
+            if(err) {
+               resolve(result);
+               return;
+            }
+        
+            console.log("REDIRECT TO " + response.headers.location);
+            console.log("----------------------------------------------------");
+            resolve(response.headers.location)
+        });
+      });
+   }
+}
+
 class LautFMStrategy {
    constructor(stationName) {
       this.stationName = stationName;
@@ -165,6 +194,60 @@ class RadioDEStrategy {
             if(response.statusCode == 200) {
                if(data && data[this.pos])
                   result = data[this.pos].streamTitle;
+            }
+            resolve(result);
+         });
+
+         req.on("requestTimeout", (request) => {
+            resolve(result);
+         });
+
+         req.on("responseTimeout", (request) => {
+            resolve(result);
+         });
+      });
+   }
+}
+
+class LiveRadioStrategy {
+   constructor(stationName) {
+      this.stationName = stationName;
+   }
+
+   getTitle() {
+      let result = "Aktueller Titel ist unbekannt";
+      return new Promise((resolve, reject) => {
+         let req = client.get(`https://liveradio.de/${this.stationName}/currently-playing`, headers, (data, response) => {
+            if(response.statusCode == 200) {
+               if(data)
+                  result = data.song.artist.name + " - " + data.song.name;
+            }
+            resolve(result);
+         });
+
+         req.on("requestTimeout", (request) => {
+            resolve(result);
+         });
+
+         req.on("responseTimeout", (request) => {
+            resolve(result);
+         });
+      });
+   }
+}
+
+class NewRadioDEStrategy {
+   constructor(stationName) {
+      this.stationName = stationName;
+   }
+
+   getTitle() {
+      let result = "Aktueller Titel ist unbekannt";
+      return new Promise((resolve, reject) => {
+         let req = client.get(`https://prod.radio-api.net/stations/now-playing?stationIds=${this.stationName}`, headers, (data, response) => {
+            if(response.statusCode == 200) {
+               if(data && data[0])
+                  result = data[0].title;
             }
             resolve(result);
          });
@@ -376,10 +459,13 @@ module.exports = {
    WackenRadioStrategy: WackenRadioStrategy,
    NRWLokalRadioStrategy: NRWLokalRadioStrategy,
    RadioDEStrategy: RadioDEStrategy,
+   NewRadioDEStrategy: NewRadioDEStrategy,
+   LiveRadioStrategy: LiveRadioStrategy,
    RSHStrategy: RSHStrategy,
    RegenbogenStrategy: RegenbogenStrategy,
    WunschradioFMStrategy: WunschradioFMStrategy,
    NinetiesStrategy: NinetiesStrategy,
    OnlineRadioBoxStrategy: OnlineRadioBoxStrategy,
-   StahlRadioStrategy: StahlRadioStrategy
+   StahlRadioStrategy: StahlRadioStrategy,
+   RedirectStrategy: RedirectStrategy
 }

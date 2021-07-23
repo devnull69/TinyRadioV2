@@ -8,6 +8,7 @@ let { JSDOM } = jsdom;
 
 let strategies = require('./strategies');
 let onlinechecker = require('./onlinechecker');
+const { RedirectStrategy } = require('./strategies');
 
 app.use(express.static('public'));
 app.use(bodyParser.json());
@@ -36,8 +37,16 @@ app.use(function (req, res, next) {
     next();
 });
 
-app.listen(port, () => {
+app.listen(port, async () => {
    console.log(`Server listening on port ${port} ...`);
+
+   // Redirect necessary?
+   for(let station of stations) {
+      if(station.redirect) {
+         console.log("REDIRECT FOR " + station.src);
+         station.src = await new RedirectStrategy(station.src).getRedirectUrl();
+      }
+   }
 });
 
 
@@ -115,7 +124,8 @@ let stations = [{
          id: 11,
          name: "Radio 91.2 80er Radio",
          scope: "80er",
-         src: "https://rnrw-ais-edge-3103-fra-eco-cdn.cast.addradio.de/rnrw/dein80er/high/stream.mp3?ar-distributor=ffa0&sid=014d&kombi=Dortmund&_art=dj0yJmlwPTc5LjIxNi4yMy4xODEmaWQ9aWNzY3hsLW42MnJrZnhrYiZ0PTE2MDUxODkwOTEmcz03ODY2ZjI5YyM1MGU0YWQxY2QwYWZhYjEwNzg5NzRkZjNlYTQ5MTM5ZQ",
+         redirect: true,
+         src: "http://addrad.io/444zfxx",
          strategy: new strategies.NRWLokalRadioStrategy(1001),
          titlecase: true,
          espradio: true
@@ -213,8 +223,9 @@ let stations = [{
       }, {
          id: 27,
          name: "Radio 91.2 Lokalradio",
-         src: "https://radio912-ais-edge-3104-fra-eco-cdn.cast.addradio.de/radio912/live/mp3/high?ar-distributor=ffa0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLXR0emRyenVtYiZ0PTE1OTcxNDQ0NzUmcz03ODY2ZjI5YyNiZTA5ZDhiNDVmNmUyZWQyMTVhOTEwYzdmMzFjZWRmMw",
+         src: "http://addrad.io/4453z56",
          scope: "Lokalradio",
+         redirect: true,
          strategy: new strategies.NRWLokalRadioStrategy(6),
          titlecase: true
       }, {
@@ -226,33 +237,33 @@ let stations = [{
       }, {
          id: 29,
          name: "1Live",
-         src: "https://wdr-edge-2020-fra-lg-cdn.cast.addradio.de/wdr/1live/live/mp3/128/stream.mp3?ar-distributor=f0a0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLXgyY3NzeWxsYiZ0PTE1OTcxNDQ5Njgmcz03ODY2ZjI5YyNlNTY5YmY0MWJlMGE4MzEzOGYzNzQwYjE1OTc1MzU0MA",
+         src: "http://wdr-edge-30ba-fra-ts-cdn.cast.addradio.de/wdr/1live/live/mp3/128/stream.mp3?ar-distributor=f0a0&_art=dj0yJmlwPTkxLjM1LjExNS4xODQmaWQ9aWNzY3hsLXgyY3NzeWxsYiZ0PTE2MjcxMjU3MjEmcz03ODY2ZjI5YyNhMWFmMGU4ZjI0MTA2MWY1OTZlOTE4NjRiYmNiZDNjZQ",
          scope: "Lokalradio",
-         strategy: new strategies.RadioDEStrategy(1382, 0)
+         strategy: new strategies.NewRadioDEStrategy("1live")
       }, {
          id: 30,
          name: "WDR2 - Ruhrgebiet",
-         src: "https://wdr-edge-201b-dus-lg-cdn.cast.addradio.de/wdr/wdr2/ruhrgebiet/mp3/128/stream.mp3?ar-distributor=f0a0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLWw2Y3NzeWxsYiZ0PTE1OTcxNDUwNzQmcz03ODY2ZjI5YyNhNWNjZmY3OTJlZWMwZWUwNTM0MTIxNDFjZmZlYTgwYw",
+         src: "http://wdr-edge-30c2-dus-ts-cdn.cast.addradio.de/wdr/wdr2/ruhrgebiet/mp3/128/stream.mp3?ar-distributor=f0a0&_art=dj0yJmlwPTkxLjM1LjExNS4xODQmaWQ9aWNzY3hsLWw2Y3NzeWxsYiZ0PTE2MjcxMjY0MjUmcz03ODY2ZjI5YyM1MDQ0N2I5NTJhYzNlZWY0MTNkNzYzNmI2MDM0MDRkMg",
          scope: "Lokalradio",
-         strategy: new strategies.RadioDEStrategy(9773, 0)
+         strategy: new strategies.NewRadioDEStrategy("wdr2ruhrgebiet")
       }, {
          id: 31,
          name: "SWR3",
-         src: "https://swr-edge-2031-dus-lg-cdn.cast.addradio.de/swr/swr3/live/aac/96/stream.aac?ar-distributor=f0a0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLXZ5c2UzMmxsYiZ0PTE1OTcxNDUyMjAmcz03ODY2ZjI5YyM4YzBjMTcyZDViMTQ5YTNlMTI0YWQyZWUwMzNjOGJjYQ",
+         src: "http://swr-edge-1035-fra-dtag-cdn.cast.addradio.de/swr/swr3/live/aac/96/stream.aac?ar-distributor=f0a0&_art=dj0yJmlwPTkxLjM1LjExNS4xODQmaWQ9aWNzY3hsLXZ5c2UzMmxsYiZ0PTE2MjcxMjY2MTAmcz03ODY2ZjI5YyMyMGVlNzQwZjU2YWU1Y2YwODBiYzZjYTM0NDM3M2ViYw",
          scope: "Lokalradio",
-         strategy: new strategies.RadioDEStrategy(2275, 0)
+         strategy: new strategies.NewRadioDEStrategy("swr3")
       }, {
          id: 32,
          name: "NDR2",
-         src: "https://ndr-edge-20b2-fra-lg-cdn.cast.addradio.de/ndr/ndr2/niedersachsen/mp3/128/stream.mp3?ar-distributor=f0a0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLWhpdW9jM2xsYiZ0PTE1OTcxNDUzMDMmcz03ODY2ZjI5YyNjMmY3ZGRhMGQwYTdjZWE0NGRmYzQ4YWRiOGE0ZTlmOA",
+         src: "http://ndr-edge-30ac-fra-ts-cdn.cast.addradio.de/ndr/ndr2/niedersachsen/mp3/128/stream.mp3?ar-distributor=f0a0&_art=dj0yJmlwPTkxLjM1LjExNS4xODQmaWQ9aWNzY3hsLWhpdW9jM2xsYiZ0PTE2MjcxMjY3MzYmcz03ODY2ZjI5YyNjY2Q1ZmNjNmI0ZDJkY2JiOWMxNWViNWVhNTNjZTgzZA",
          scope: "Lokalradio",
-         strategy: new strategies.RadioDEStrategy(2262, 0)
+         strategy: new strategies.NewRadioDEStrategy("ndr2")
       }, {
          id: 33,
          name: "Bayern3",
-         src: "https://br-edge-2009-dus-lg-cdn.cast.addradio.de/br/br3/live/mp3/128/stream.mp3?ar-distributor=f0a0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLWRzcWR4d2tsYiZ0PTE1OTcxNDUzNjImcz03ODY2ZjI5YyM2ZTZiMjJjZjY5NGJiNWRiNzVmMDk2ODQ1ZWVkMjYyYg",
+         src: "http://br-edge-10a9-fra-dtag-cdn.cast.addradio.de/br/br3/live/aac/low?ar-distributor=f0a0&_art=dj0yJmlwPTkxLjM1LjExNS4xODQmaWQ9aWNzY3hsLXNvcWZhbW5vYiZ0PTE2MjcxMjY4OTMmcz03ODY2ZjI5YyM3NzY0ZjNlOWI5NThlYTZkNmRkMjFiZmVmMmFhNTMyNQ",
          scope: "Lokalradio",
-         strategy: new strategies.RadioDEStrategy(2247, 0)
+         strategy: new strategies.NewRadioDEStrategy("bayern3")
       }, {
          id: 23,
          name: "Wunschradio FM",
@@ -297,12 +308,6 @@ let stations = [{
          scope: "90er",
          strategy: new strategies.NinetiesStrategy(141)
       }, {
-         id: 40,
-         name: "Wunschradio FM 90er",
-         src: "http://server74.radiostreamserver.de/wunschradio-90er.mp3",
-         scope: "90er",
-         strategy: new strategies.WunschradioFMStrategy("90er")
-      }, {
          id: 41,
          name: "M1.FM 90er",
          src: "http://tuner.m1.fm/90er.mp3",
@@ -319,7 +324,7 @@ let stations = [{
          name: "Metal Up Your Ass",
          src: "https://metal-up-your-ass.stream.laut.fm/metal-up-your-ass?ref=radiode&t302=2019-07-13_00-10-38&uuid=3935ca92-bf30-4e4b-a1d2-f8c0bf0ad7ce",
          scope: "heavymetal",
-         strategy: new strategies.RadioDEStrategy(104129, 0)
+         strategy: new strategies.LiveRadioStrategy("metal-up-your-ass")
       }];
 
 
