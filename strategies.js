@@ -48,9 +48,11 @@ class RedirectStrategy {
       let result = this.url;
       console.log("REDIRECT STRATEGY starting for " + this.url);
       return new Promise((resolve, reject) => {
+         if(!this.url)
+            resolve("");
          let requestSettings = {
             method: 'GET',
-            url: 'http://addrad.io/444zfxx',
+            url: this.url,
             followRedirect: false
          };
         
