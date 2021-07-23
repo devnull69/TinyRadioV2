@@ -254,14 +254,13 @@ class RegenbogenStrategy {
 }
 
 class WunschradioFMStrategy {
-   constructor(stationName) {
-      this.stationName = stationName;
+   constructor() {
    }
 
    getTitle() {
       let result = "Aktueller Titel ist unbekannt";
       return new Promise((resolve, reject) => {
-         let req = client.get(`https://wunschradio.de/data/${this.stationName}.json`, headers, (data, response) => {
+         let req = client.get(`https://wunschradio.de/data/wunschradio.json`, headers, (data, response) => {
             if(response.statusCode == 200) {
                if(data)
                   result = data.artist + " - " + data.title;

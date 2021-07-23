@@ -192,12 +192,6 @@ let stations = [{
          strategy: new strategies.OnlineRadioBoxStrategy("de.rpr280er"),
          titlecase: true
       }, {
-         id: 23,
-         name: "Wunschradio FM 80er",
-         src: "http://server74.radiostreamserver.de/wunschradio-80er.mp3",
-         scope: "80er",
-         strategy: new strategies.WunschradioFMStrategy("80er")
-      }, {
          id: 24,
          name: "RPR1 Neue Deutsche Welle",
          src: "http://streams.rpr1.de/rpr-ndw-128-mp3?usid=0-0-H-M-D-06",
@@ -259,6 +253,12 @@ let stations = [{
          src: "https://br-edge-2009-dus-lg-cdn.cast.addradio.de/br/br3/live/mp3/128/stream.mp3?ar-distributor=f0a0&_art=dj0yJmlwPTc5LjIxNi4yNi4xMzcmaWQ9aWNzY3hsLWRzcWR4d2tsYiZ0PTE1OTcxNDUzNjImcz03ODY2ZjI5YyM2ZTZiMjJjZjY5NGJiNWRiNzVmMDk2ODQ1ZWVkMjYyYg",
          scope: "Lokalradio",
          strategy: new strategies.RadioDEStrategy(2247, 0)
+      }, {
+         id: 23,
+         name: "Wunschradio FM",
+         src: "https://radiostreamserver.de/wunschradio.mp3",
+         scope: "Lokalradio",
+         strategy: new strategies.WunschradioFMStrategy()
       }, {
          id: 34,
          name: "R.SH 90er",
