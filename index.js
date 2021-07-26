@@ -65,6 +65,12 @@ let stations = [{
          strategy: new strategies.WackenRadioStrategy(),
          espradio: false
       }, {
+         id: 44,
+         name: "Radio BOB! Wacken",
+         src: "http://bob.hoerradar.de/radiobob-wacken-mp3-mq?sABC=60sr7843%230%232o51p516qo6109rns3p7909819p6poro%23bayvarenqvbobk&=&amsparams=playerid:onlineradiobox;skey:1627289667",
+         scope: "heavymetal",
+         strategy: new strategies.OnlineRadioBoxStrategy("de.bobswackennonstop")
+      }, {
          id: 3,
          name: "Metal Hammer",
          src: "https://metal-hammer.stream.laut.fm/metal-hammer",
